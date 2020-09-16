@@ -2,6 +2,7 @@ parameters:
     env(DFS_DATABASE_URL): '%env(resolve:DATABASE_URL)%'
     dfs_var_dir:  'var/site'
     dfs_storage_dir: 'storage'
+    ezsettings.default.nfs_adapter.local.directory: "/%dfs_nfs_path%/$var_dir$/$storage_dir$"
 
 # new doctrine connection for the dfs legacy_dfs_cluster metadata handler.
 doctrine:
@@ -21,7 +22,7 @@ oneup_flysystem:
     adapters:
         nfs_adapter:
             local:
-                directory: '/%dfs_nfs_path%/%dfs_var_dir%/%dfs_storage_dir%'
+                directory: "%ezsettings.default.nfs_adapter.local.directory%"
 
 # define the ez handlers
 ez_io:
